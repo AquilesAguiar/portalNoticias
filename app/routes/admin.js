@@ -1,15 +1,13 @@
-const { check, validationResult } = require('express-validator');
-module.exports = function(app){
-    app.get("/formulario",function(req, res){
-        res.render('admin/formulario')
+var validacoesForm = require('../controllers/admin').validacoes()
+module.exports = function(application){
+    application.get("/formulario",function(req, res){
+        application.app.controllers.admin.formulario(application,req,res)
+        
     })
-    app.post("/noticias/salvar",function(req, res){
-        var noticia = req.body
-        var connection = app.config.dbConnection()
-        var NoticiasDAO = new app.app.models.NoticiasDAO(connection)
-        NoticiasDAO.setNoticia(function(err,result){
-           res.redirect('/noticias')
-        },noticia)
+
+    application.post("/noticias/salvar",validacoesForm,function(req, res){
+        
+        application.app.controllers.admin.noticiasSalvar(application,req,res)
     })
 }
 

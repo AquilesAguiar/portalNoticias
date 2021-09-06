@@ -1,11 +1,8 @@
-module.exports = function(app){
-    app.get("/noticias",function(req, res){
-        var connection = app.config.dbConnection()
-        var NoticiasDAO = new app.app.models.NoticiasDAO(connection)
-        NoticiasDAO.getNoticias(function(err, result){
-            res.render('noticias/noticias',{noticias: result});
-        })
-        
-        
+module.exports = function(application){
+    application.get("/noticias",function(req, res){
+        application.app.controllers.noticias.verNoticias(application,req,res);
+    })
+    application.get("/noticia",function(req, res){
+        application.app.controllers.noticias.verNoticia(application,req,res);
     })
 }
