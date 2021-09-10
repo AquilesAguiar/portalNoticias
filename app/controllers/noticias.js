@@ -9,8 +9,8 @@ module.exports.verNoticias = function(app,req,res){
 module.exports.verNoticia = function(app,req,res){
     var connection = app.config.dbConnection()
     var NoticiasDAO = new app.app.models.NoticiasDAO(connection)
-    
-    NoticiasDAO.getNoticia(function(err, result){
+    let id = req.query
+    NoticiasDAO.getNoticia(id['id_noticia'],function(err, result){
         res.render('noticias/noticia',{noticias: result});
     })
 }

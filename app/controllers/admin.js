@@ -6,7 +6,8 @@ module.exports.validacoes = function(){
         check('resumo','Resumo é obigratório').notEmpty(),
         check('resumo','Resumo deve conter entr 10 e 100 caracteres.').isLength({min:10,max:100}),
         check('autor','Autor é obigratório').notEmpty(),
-        check('data_criacao','Data é obigratório').notEmpty().isDate({format: 'YYYY-MM-DD'}),
+        check('data_criacao','Data é obigratório').notEmpty(),
+        check('data_criacao','Formato Invalido').isDate({format: 'YYYY-MM-DD'}),
         check('noticia','Noticia é obigratório').notEmpty()   
     ]
 }
